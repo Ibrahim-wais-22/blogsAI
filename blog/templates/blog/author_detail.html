@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog</title>
+</head>
+<body>
+  <h1>{{ author.name }}</h1>
+  <p>{{ author.bio }}</p>
+  <p>Email: {{ author.email }}</p>
+  <p>Website: {{ author.website }}</p>
+  <img src="{{ author.profile_picture.url }}" alt="{{ author.name }}">
+  <h2>Posts by {{ author.name }}</h2>
+  {% for post in posts %}
+    <h3><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h3>
+    <p>Published on {{ post.pub_date }}</p>
+  {% endfor %}
+</body>
+</html>

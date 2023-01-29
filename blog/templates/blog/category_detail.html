@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog</title>
+</head>
+<body>
+  <h1>{{ category.name }}</h1>
+  <p>{{ category.description }}</p>
+  <h2>Posts in {{ category.name }}</h2>
+  {% for post in posts %}
+    <h3><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h3>
+    <p>Published on {{ post.pub_date }} by {{ post.author }}</p>
+    <p>Tags: {% for tag in post.tag_set.all %}<a href="{% url 'tag_detail' tag.name %}">{{ tag.name }}</a> {% endfor %}</p>
+  {% endfor %}
+</body>
+</html>

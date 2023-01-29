@@ -1,0 +1,36 @@
+ {% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog</title>
+</head>
+<body>
+  {% block navbar %}
+  
+  
+  <header>
+    
+    <nav>
+      <ul>
+        <li><a href="">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Categories</a></li>
+        <li><a href="#">Authors</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  {% endblock navbar %}
+  
+
+  <h1>Latest Posts</h1>
+  {% for post in latest_posts %}
+    <h2><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h2>
+    <p>{{ post.content }}</p>
+    <p>Published on {{ post.pub_date }} by {{ post.author }}</p>
+    <p>Categories: {% for category in post.categories.all %}<a href="{% url 'category_detail' category.id %}">{{ category.name }}</a> {% endfor %}</p>
+    <p>Tags: {% for tag in post.tag_set.all %}<a href="{% url 'tag_detail' tag.name %}">{{ tag.name }}</a> {% endfor %}</p>
+  {% endfor %}
+</body>
+</html>
